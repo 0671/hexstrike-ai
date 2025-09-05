@@ -7,12 +7,12 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Security](https://img.shields.io/badge/Security-Penetration%20Testing-red.svg)](https://github.com/0x4m4/hexstrike-ai)
-[![MCP](https://img.shields.io/badge/MCP-Compatible-purple.svg)](https://github.com/0x4m4/hexstrike-ai)
-[![Version](https://img.shields.io/badge/Version-6.0.0-orange.svg)](https://github.com/0x4m4/hexstrike-ai/releases)
-[![Tools](https://img.shields.io/badge/Security%20Tools-150%2B-brightgreen.svg)](https://github.com/0x4m4/hexstrike-ai)
-[![Agents](https://img.shields.io/badge/AI%20Agents-12%2B-purple.svg)](https://github.com/0x4m4/hexstrike-ai)
-[![Stars](https://img.shields.io/github/stars/0x4m4/hexstrike-ai?style=social)](https://github.com/0x4m4/hexstrike-ai)
+[![Security](https://img.shields.io/badge/Security-Penetration%20Testing-red.svg)](https://github.com/0671/hexstrike-ai)
+[![MCP](https://img.shields.io/badge/MCP-Compatible-purple.svg)](https://github.com/0671/hexstrike-ai)
+[![Version](https://img.shields.io/badge/Version-6.0.0-orange.svg)](https://github.com/0671/hexstrike-ai/releases)
+[![Tools](https://img.shields.io/badge/Security%20Tools-150%2B-brightgreen.svg)](https://github.com/0671/hexstrike-ai)
+[![Agents](https://img.shields.io/badge/AI%20Agents-12%2B-purple.svg)](https://github.com/0671/hexstrike-ai)
+[![Stars](https://img.shields.io/github/stars/0x4m4/hexstrike-ai?style=social)](https://github.com/0671/hexstrike-ai)
 
 **Advanced AI-powered penetration testing MCP framework with 150+ security tools and 12+ autonomous AI agents**
 
@@ -112,7 +112,7 @@ graph TD
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/0x4m4/hexstrike-ai.git
+git clone https://github.com/0671/hexstrike-ai.git
 cd hexstrike-ai
 
 # 2. Create virtual environment
@@ -183,7 +183,10 @@ echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sud
 sudo apt update && sudo apt install google-chrome-stable
 ```
 
-### Start the Server
+### 修改 mcp Server token配置
+`hexstrike_server.py` 的 `token_list` 可增加 访问 Server 所需 token。如果 Client 访问 Server 未携带或者携带了错误的 token，Server会返回404， Server 的功能也就无法使用。
+
+### 启动 mcp Server
 
 ```bash
 # Start the MCP server
@@ -205,12 +208,13 @@ curl http://localhost:8888/health
 # Test AI agent capabilities
 curl -X POST http://localhost:8888/api/intelligence/analyze-target \
   -H "Content-Type: application/json" \
+  -H "token: RNnee!-9v@U6" \
   -d '{"target": "example.com", "analysis_type": "comprehensive"}'
 ```
 
 ---
 
-## AI Client Integration Setup
+## AI Agent 配置 mcp Client
 
 ### Claude Desktop Integration or Cursor
 
@@ -223,7 +227,9 @@ Edit `~/.config/Claude/claude_desktop_config.json`:
       "args": [
         "/path/to/hexstrike-ai/hexstrike_mcp.py",
         "--server",
-        "http://localhost:8888"
+        "http://localhost:8888",
+        "--token",
+        "RNnee!-9v@U6"
       ],
       "description": "HexStrike AI v6.0 - Advanced Cybersecurity Automation Platform",
       "timeout": 300,
@@ -245,7 +251,9 @@ Configure VS Code settings in `.vscode/settings.json`:
       "args": [
         "/path/to/hexstrike-ai/hexstrike_mcp.py",
         "--server",
-        "http://localhost:8888"
+        "http://localhost:8888",
+        "--token",
+        "RNnee!-9v@U6"
       ]
     }
   },
@@ -778,7 +786,7 @@ We welcome contributions from the cybersecurity and AI community!
 
 ```bash
 # 1. Fork and clone the repository
-git clone https://github.com/0x4m4/hexstrike-ai.git
+git clone https://github.com/0671/hexstrike-ai.git
 cd hexstrike-ai
 
 # 2. Create development environment
@@ -831,7 +839,7 @@ MIT License - see LICENSE file for details.
 
 ### **🚀 Ready to Transform Your AI Agents?**
 
-**[⭐ Star this repository](https://github.com/0x4m4/hexstrike-ai)** • **[🍴 Fork and contribute](https://github.com/0x4m4/hexstrike-ai/fork)** • **[📖 Read the docs](docs/)**
+**[⭐ Star this repository](https://github.com/0671/hexstrike-ai)** • **[🍴 Fork and contribute](https://github.com/0671/hexstrike-ai/fork)** • **[📖 Read the docs](docs/)**
 
 ---
 
