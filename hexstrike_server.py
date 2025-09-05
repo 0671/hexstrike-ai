@@ -39,7 +39,7 @@ import shutil
 import venv
 import zipfile
 from pathlib import Path
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, abort
 import psutil
 import signal
 import requests
@@ -93,6 +93,14 @@ logger = logging.getLogger(__name__)
 # Flask app configuration
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
+
+token_list = []  # 允许的 token 集合
+token_list += "RNnee!-9v@U6" # 默认token
+@app.before_request
+def check_token():
+    token = request.headers.get("token","无token")
+    if token not in token_list:
+        abort(404)
 
 # API Configuration
 API_PORT = int(os.environ.get('HEXSTRIKE_PORT', 8888))
