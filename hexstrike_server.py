@@ -98,6 +98,8 @@ token_list = []  # 允许的 token 集合
 token_list += "RNnee!-9v@U6" # 默认token
 @app.before_request
 def check_token():
+    if request.path == '/health': # 排除健康检查接口
+        return
     token = request.headers.get("token","无token")
     if token not in token_list:
         abort(404)
