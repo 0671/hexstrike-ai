@@ -148,17 +148,21 @@ DEFAULT_HEXSTRIKE_TOKEN = "RNnee!-9v@U6"  # 默认 HexStrike server 访问 token
 class HexStrikeClient:
     """Enhanced client for communicating with the HexStrike AI API Server"""
     
-    def __init__(self, server_url: str, timeout: int = DEFAULT_REQUEST_TIMEOUT):
+    def __init__(self, server_url: str, token: str, timeout: int = DEFAULT_REQUEST_TIMEOUT):
         """
         Initialize the HexStrike AI Client
         
         Args:
             server_url: URL of the HexStrike AI API Server
+            token: Token of the HexStrike AI API Server
             timeout: Request timeout in seconds
         """
         self.server_url = server_url.rstrip("/")
         self.timeout = timeout
         self.session = requests.Session()
+        self.session.headers.update({
+            "token": token
+        })
         
         # Try to connect to server with retries
         connected = False
@@ -5430,11 +5434,13 @@ def main():
     
     # MCP compatibility: No banner output to avoid JSON parsing issues
     logger.info(f"🚀 Starting HexStrike AI MCP Client v6.0")
+    logger.info(f"🔗 Get server token: {args.token}")
     logger.info(f"🔗 Connecting to: {args.server}")
+
     
     try:
         # Initialize the HexStrike AI client
-        hexstrike_client = HexStrikeClient(args.server, args.timeout)
+        hexstrike_client = HexStrikeClient(args.server, args.token, args.timeout)
         
         # Check server health and log the result
         health = hexstrike_client.check_health()
