@@ -95,7 +95,7 @@ app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
 token_list = []  # 允许的 token 集合
-token_list += "RNnee!-9v@U6" # 默认token
+token_list.append("RNnee!-9v@U6") # 默认token
 @app.before_request
 def check_token():
     if request.path == '/health': # 排除健康检查接口
