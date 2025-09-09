@@ -143,7 +143,6 @@ logger = logging.getLogger(__name__)
 DEFAULT_HEXSTRIKE_SERVER = "http://127.0.0.1:8888"  # Default HexStrike server URL
 DEFAULT_REQUEST_TIMEOUT = 300  # 5 minutes default timeout for API requests
 MAX_RETRIES = 3  # Maximum number of retries for connection attempts
-DEFAULT_HEXSTRIKE_TOKEN = "RNnee!-9v@U6"  # 默认 HexStrike server 访问 token
 
 class HexStrikeClient:
     """Enhanced client for communicating with the HexStrike AI API Server"""
@@ -5410,8 +5409,6 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
 def parse_args():
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(description="Run the HexStrike AI MCP Client")
-    parser.add_argument("--token", type=str, default=DEFAULT_HEXSTRIKE_TOKEN, 
-                      help=f"HexStrike AI API server token (default: {DEFAULT_HEXSTRIKE_TOKEN})")
     parser.add_argument("--server", type=str, default=DEFAULT_HEXSTRIKE_SERVER, 
                       help=f"HexStrike AI API server URL (default: {DEFAULT_HEXSTRIKE_SERVER})")
     parser.add_argument("--timeout", type=int, default=DEFAULT_REQUEST_TIMEOUT,
